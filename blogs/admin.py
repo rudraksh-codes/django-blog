@@ -8,6 +8,7 @@ class BlogAdmin(admin.ModelAdmin):
 
     list_display = ('status', 'title', 'category', 'author', 'is_featured')
     search_fields = ('id', 'title', 'category__category_name', 'status', 'author__username')
+    list_editable = ('is_featured', 'category')
 
 
 # Register your models here.
