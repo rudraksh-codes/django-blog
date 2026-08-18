@@ -1,0 +1,46 @@
+.featured-post {
+    height: 400px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.featured-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 55%;
+
+    background: rgba(30, 35, 40, 0.75);
+
+    clip-path: polygon(
+        0 0,
+        75% 0,
+        100% 100%,
+        0 100%
+    );
+}
+
+.featured-content {
+    position: relative;
+    z-index: 2;
+
+    width: 75%;
+    padding: 45px 30px 45px 50px;
+
+    color: white;
+}
+
+.featured-content h1 {
+    color: white;
+}
+
+.featured-content p {
+    color: white;
+}
+
+body {
+    background: red !important;
+}

@@ -15,7 +15,7 @@ class Category(models.Model):
     )
 
     def __str__(self):
-        return self.category_name
+        return self.category_name 
 
     class Meta: 
        verbose_name_plural = "categories"
@@ -23,10 +23,8 @@ class Category(models.Model):
 class Blog(models.Model):
 
     class Statuses(models.TextChoices):
-        COMPLETED = 'completed', 'Completed'
-        IN_PROGRESS = 'in_progress', 'In_Progress'
-        PENDING = 'pending', 'Pending'
-
+        DRAFT = "draft", "Draft"
+        POSTED = "posted", "Posted"
 
     title = models.CharField(
         max_length=50,
@@ -52,10 +50,6 @@ class Blog(models.Model):
         upload_to= "uploads/%Y/%m/%d",
     )
 
-    featured_document_file = models.FileField(
-        upload_to="uploads/%Y/%m/%d", 
-    )
-
     short_description = models.TextField(
         max_length=500
     )
@@ -65,7 +59,7 @@ class Blog(models.Model):
     status = models.CharField(
         max_length=20, 
         choices = Statuses, 
-        default= Statuses.PENDING
+        default= Statuses.DRAFT
 
     )
 
