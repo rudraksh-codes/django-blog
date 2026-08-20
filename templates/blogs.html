@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+{% for b in blog %}
+
+
+<h1 >
+            {{ b.title }}
+</h1>
+
+
+<h5 >
+            {{ b.short_description }}
+</h5>
+
+
+<p class="lead my-3">
+            {{ b.blog_body }}
+        </p>
+
+{% endfor %}
+
+
+{% endblock %}
