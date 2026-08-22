@@ -12,7 +12,7 @@ def posts_by_category(request, category_id):
     # except :
     #     #redirect to homepage
     #     return redirect('home')
- 
+
 
     # use get_object_or_404 when you want to show 404 error page...
     category = get_object_or_404(Category, id = category_id) 
@@ -26,11 +26,12 @@ def posts_by_category(request, category_id):
     return render(request, 'posts_by_category.html', context)
 
 def blogs(request, slug):
+    pass
 
-    blog = Blog.objects.filter(slug=slug)
+    blog = Blog.objects.get(slug=slug)
 
     context = {
         'blog' : blog   
     }
 
-    return render(request, "blogs.html" , context)
+    return render(request, "blogs.html", context)

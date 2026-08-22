@@ -26,7 +26,7 @@
                     <div class="col p-4 d-flex flex-column position-static">
                         <h3 class="mb-0">{{post.title}}</h3>
                         <div class="mb-1 text-body-secondary">{{post.created_at | timesince}} ago | {{post.author}}</div>
-                        <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p> <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
+                        <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p> <a href="{% url 'blogs' post.slug %}" class="icon-link gap-1 icon-link-hover stretched-link">
                             Continue reading
                             <svg class="bi" aria-hidden="true">
                                 <use xlink:href="#chevron-right"></use>

@@ -3,101 +3,103 @@
 {% block content %}
 
 <main class="container">
-{% for post in featured_posts %}
-        {% if forloop.first %}
+    {% for post in featured_posts %}
+    {% if forloop.first %}
 
-<div
-    class="p-4 p-md-5 mb-4 rounded text-white"
-    style="
+    <div class="p-4 p-md-5 mb-4 rounded text-white" style="
         background-image:
             linear-gradient(rgba(0,0,0,.55), rgba(0,0,0,.55)),
             url('{{ post.featured_image.url }}');
         background-size: cover;
         background-position: center;
 ">
-    <div class="col-lg-6 px-0">
-        <h1 class="display-4 fst-italic">{{ post.title }}</h1>
+        <div class="col-lg-6 px-0">
+            <h1 class="display-4 fst-italic">{{ post.title }}</h1>
 
-        <p class="lead my-3">
-            {{ post.short_description | truncatewords:25 }}
-        </p>
+            <p class="lead my-3">
+                {{ post.short_description | truncatewords:25 }}
+            </p>
 
-        <p class="lead mb-0">
-            <a href="{% url 'blogs' post.slug %}" class="text-white fw-bold">
-                Continue reading...
-            </a>
-        </p>
+            <p class="lead mb-0">
+                <a href="{% url 'blogs' post.slug %}" class="text-white fw-bold">
+                    Continue reading...
+                </a>
+            </p>
+        </div>
     </div>
-</div>
-        {% endif %}
+    {% endif %}
     {% endfor %}
 
-        <div class="row mb-2">
-            <!-- featured posts -->
-                   <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    Featured Posts
-                </h3>
-            {% for post in featured_posts %}
-            {% if not forloop.first %} 
-            <div class="col-md-6">
-                <div
-                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                    <div class="col p-4 d-flex flex-column position-static"> <strong
-                            class="d-inline-block mb-2 text-success-emphasis">{{ post.category }}</strong>
-                        <h3 class="mb-0">{{post.title}}</h3>
-                        <div class="mb-1 text-body-secondary">{{post.created_at | timesince}} ago | {{post.author}}</div>
-                        <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p> <a href="#" class="icon-link gap-1 icon-link-hover stretched-link">
-                            Continue reading
-                            <svg class="bi" aria-hidden="true">
-                                <use xlink:href="#chevron-right"></use>
-                            </svg> </a>
-                    </div>
-                   <div class="col-auto d-none d-lg-block">
-            <img
-                src="{{ post.featured_image.url }}"
-                width="200"
-                height="250"
-                style="object-fit: cover;"
-                alt="{{ post.title }}"
-            >
-        </div>
-                </div>
-            </div>
-            {% endif %}
-            {% endfor %}
-        </div>
-        <div class="row g-5">
-            <div class="col-md-8">
-                <h3 class="pb-4 mb-4 fst-italic border-bottom">
-                    Recent Articles
-                </h3>
-                <article class="blog-post">
-                    
-                {% for post in posts %}
-                    <h2 class="display-5 link-body-emphasis mb-1">{{ post.title }}</h2>
+    <div class="row mb-2">
+        <!-- featured posts -->
+        <h3 class="pb-4 mb-4 fst-italic border-bottom">
+            Featured Posts
+        </h3>
+        {% for post in featured_posts %}
+        {% if not forloop.first %}
+        <div class="col-md-6">
+            <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                <div class="col p-4 d-flex flex-column position-static"> <strong
+                        class="d-inline-block mb-2 text-success-emphasis">{{ post.category }}</strong>
+                    <h3 class="mb-0">
+                        <a href="{% url 'blogs' post.slug %}" class="text-decoration-none link-body-emphasis">
+                            {{ post.title }}
+                        </a>
+                    </h3>
                     <div class="mb-1 text-body-secondary">{{post.created_at | timesince}} ago | {{post.author}}</div>
-                    <p>{{ post.short_description | truncatewords:20 }}</p>
-                    <hr>
-                    <p>{{ post.blog_body | truncatewords:100 }}</p> 
-                    
-                    </article>
-                {% endfor %}
-                <nav class="blog-pagination" aria-label="Pagination"> <a class="btn btn-outline-primary rounded-pill"
-                        href="#">Older</a> <a class="btn btn-outline-secondary rounded-pill disabled"
-                        aria-disabled="true">Newer</a> </nav>
-            </div>
-            <div class="col-md-4">
-                    <div class="p-4">
-                        <h4 class="fst-italic">Elsewhere</h4>
-                        <ol class="list-unstyled">
-                            <li><a href="#">GitHub</a></li>
-                            <li><a href="#">Social</a></li>
-                            <li><a href="#">Facebook</a></li>
-                        </ol>
-                    </div>
+                    <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p>
+                </div>
+                <div class="col-auto d-none d-lg-block">
+                    <img src="{{ post.featured_image.url }}" width="200" height="250" style="object-fit: cover;"
+                        alt="{{ post.title }}">
                 </div>
             </div>
         </div>
-    </main>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row g-5">
+        <div class="col-md-8">
+            <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                Recent Articles
+            </h3>
+            <article class="blog-post">
+
+                {% for post in posts %}
+                <h2 class="display-5 link-body-emphasis mb-1">{{ post.title }}</h2>
+                <div class="mb-1 text-body-secondary">{{post.created_at | timesince}} ago | {{post.author}}</div>
+                <p>{{ post.short_description | truncatewords:20 }}</p>
+                <hr>
+                <p>{{ post.blog_body | truncatewords:100 }}</p>
+
+            </article>
+            {% endfor %}
+            <nav class="blog-pagination" aria-label="Pagination"> <a class="btn btn-outline-primary rounded-pill"
+                    href="#">Older</a> <a class="btn btn-outline-secondary rounded-pill disabled"
+                    aria-disabled="true">Newer</a> </nav>
+        </div>
+
+ <aside class="col-md-4 blog-sidebar">
+        <div class="p-3 mb-3 bg-light rounded">
+          <h4 class="font-italic">{{ about.about_heading }}</h4>
+          <p class="mb-0">{{ about.about_description }}</p>
+        </div>
+
+        <div class="col-md-4">
+            {% if social_links %}
+            <div class="p-4">
+                <h4 class="fst-italic">FollowUs</h4>
+                <ol class="list-unstyled">
+                    
+                    {% for link in social_links %}
+                    <li><a href="{{link.link}}" target="_blank">{{link.platform}}</a></li>
+                    {% endfor %}
+            {% endif %}
+                </ol>
+            </div>
+        </div>
+    </div>
+    </div>
+</main>
 
 {% endblock %}
