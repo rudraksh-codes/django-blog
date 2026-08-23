@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block content %}
+   <main class="container">
+
+
+        <div class="row mb-2">
+            <!-- featured posts -->
+                   <h3 class="pb-4 mb-4 fst-italic border-bottom">
+                    Posts matching - {{keyword}}
+                </h3>
+            {% if blogs %}
+            {% for post in blogs %} 
+            <div class="col-md-6">
+                <div
+                    class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
+                    <div class="col p-4 d-flex flex-column position-static">
+                        <h3 class="mb-0">{{post.title}}</h3>
+                        <div class="mb-1 text-body-secondary">{{post.created_at | timesince}} ago | {{post.author}}</div>
+                        <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p> <a href="{% url 'blogs' post.slug %}" class="icon-link gap-1 icon-link-hover stretched-link">
+                            Continue reading
+                            <svg class="bi" aria-hidden="true">
+                                <use xlink:href="#chevron-right"></use>
+                            </svg> </a>
+                    </div>
+                   <div class="col-auto d-none d-lg-block">
+            <img
+                src="{{ post.featured_image.url }}"
+                width="200"
+                height="250"
+                style="object-fit: cover;"
+                alt="{{ post.title }}"
+            >
+        </div>
+                </div>
+            </div>
+            {% endfor %}
+            {% else %}
+            <p>NO POSTS FOUND</p>
+            {% endif %}
+        </div>
+
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
