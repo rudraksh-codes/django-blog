@@ -2,6 +2,8 @@ from django.shortcuts import render, redirect
 from blogs.models import Blog
 from assignments.models import About, SocialLink
 from .forms import RegistrationForm
+from django.contrib.auth.forms import AuthenticationForm
+
 
 def home(request):
     featured_posts = Blog.objects.filter(is_featured=True, status = 'posted').order_by("updated_at")
@@ -36,3 +38,12 @@ def register(request):
         'form' : form, 
     }
     return render(request, 'register.html', context)
+
+
+def login(request):
+
+    form = AuthenticationForm()
+
+    context = dict(form = form)
+
+    return render(request, "login.html", context)

@@ -29,6 +29,7 @@ urlpatterns = [
     #search
     path('blogs/search', BlogsViews.search, name = "search"),
     path('register/', views.register, name = 'register'), 
+    path('login/', views.login, name = "login"), 
 
 ] 
 
