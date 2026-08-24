@@ -63,7 +63,7 @@ TEMPLATES = [
         'OPTIONS': {
             'context_processors': [
                 'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
+                'django.contrib.auth.context_processors.auth', #is's actually returning user object
                 'django.contrib.messages.context_processors.messages',
                 'context_processors.get_categories', 
                 'context_processors.get_social_links',
