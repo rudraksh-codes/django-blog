@@ -201,7 +201,7 @@
                         <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Login</a> &nbsp;
                         <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a> 
                         {% else %}
-                        <span>You're logged in as {{user}}</span>&emsp; 
+                        <span><a href="{% url 'dashboard' %}">Dashboard</a></span>&emsp; 
                         <span><a href="{% url 'logout' %}">Logout</a></span>
                         {% endif %}
                     </div>
