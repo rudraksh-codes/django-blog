@@ -52,7 +52,7 @@ def login(request):
             if user is not None : 
                 auth.login(request, user)
 
-            return redirect('home')
+            return redirect('dashboard')
         else :
             print(form.errors)
     else:

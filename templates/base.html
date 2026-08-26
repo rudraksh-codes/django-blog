@@ -22,8 +22,9 @@
     <link rel="icon" href="/docs/5.3/assets/img/favicons/favicon.ico">
     <meta name="theme-color" content="#712cf9">
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display:700,900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <!-- <link href="{% static 'css/blog.css' %}" rel="stylesheet"> -->
-     
+
     <style>
         .bd-placeholder-img {
             font-size: 1.125rem;
@@ -105,9 +106,8 @@
         .bd-mode-toggle .dropdown-menu .active .bi {
             display: block !important
         }
-        
     </style>
-     <link rel="stylesheet" href="static css/blog.css">
+    <link rel="stylesheet" href="static css/blog.css">
 </head>
 
 <body> <svg xmlns="http://www.w3.org/2000/svg" class="d-none">
@@ -190,22 +190,23 @@
                 <div class="col-4 pt-1"> <a class="link-secondary" href="#">Subscribe</a> </div>
                 <div class="col-4 text-center"> <a class="blog-header-logo text-body-emphasis text-decoration-none"
                         href="#">Django Blog</a> </div>
-                <div class="col-4 d-flex justify-content-end align-items-center"> 
-                          <form action="{% url 'search' %}" method="GET">
-                            <div class="input-group">
-                                <input type="text" class="form-control" placeholder="Enter search term" name="keyword" value="{{keyword}}">
-                                <button type="submit" class="btn btn-warning" id="button-search" type="button">Go!</button>
-                            </div>
-                          </form>
-                        {% if not user.is_authenticated %}
-                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Login</a> &nbsp;
-                        <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a> 
-                        {% else %}
-                        <span><a href="{% url 'dashboard' %}">Dashboard</a></span>&emsp; 
-                        <span><a href="{% url 'logout' %}">Logout</a></span>
-                        {% endif %}
-                    </div>
-            </div>      
+                <div class="col-4 d-flex justify-content-end align-items-center">
+                    <form action="{% url 'search' %}" method="GET">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Enter search term" name="keyword"
+                                value="{{keyword}}">
+                            <button type="submit" class="btn btn-warning" id="button-search" type="button">Go!</button>
+                        </div>
+                    </form>
+                    {% if not user.is_authenticated %}
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'login' %}">Login</a> &nbsp;
+                    <a class="btn btn-sm btn-outline-secondary" href="{% url 'register' %}">Register</a>
+                    {% else %}
+                    <span><a href="{% url 'dashboard' %}">Dashboard</a></span>&emsp;
+                    <span><a href="{% url 'logout' %}">Logout</a></span>
+                    {% endif %}
+                </div>
+            </div>
         </header>
         <div class="nav-scroller py-1 mb-3 border-bottom">
             <nav class="nav nav-underline justify-content-between">
@@ -218,13 +219,13 @@
         </div>
     </div>
 
-<!-- Main Content Part  -->
-{% block content %}
+    <!-- Main Content Part  -->
+    {% block content %}
 
-{% endblock %}
+    {% endblock %}
 
-<!-- Footer Part  -->
-     <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
+    <!-- Footer Part  -->
+    <footer class="py-5 text-center text-body-secondary bg-body-tertiary">
         <p>Blog template built for <a href="https://getbootstrap.com/">Bootstrap</a> by <a
                 href="https://x.com/mdo">@mdo</a>.</p>
         <p class="mb-0"> <a href="#">Back to top</a> </p>
