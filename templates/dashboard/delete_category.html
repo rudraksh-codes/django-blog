@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+
+{% block content %}
+
+
+<div class="row">
+    <!-- Left SideBar -->
+    {% include 'dashboard/sidebar.html' %}
+
+    <!-- Right SideContent -->
+    <div class="col-md-8">
+        <h3>ARE YOU SURE YOU WANT TO DELETE THIS CATEGORY, DELETING IT WILL DELETE ALL RELATED BLOG POSTS!</h3>
+        <br>
+        <form method="POST">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-danger">DELETE</button>
+            <a href="{% url 'categories' %}" class="btn btn-dark">Cancel</a>
+        </form>
+    </div>
+</div>
+
+
+
+{% endblock %}

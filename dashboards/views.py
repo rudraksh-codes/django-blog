@@ -50,5 +50,13 @@ def edit_category(request, pk):
 
 def delete_category(request, pk):
     category = get_object_or_404(Category, pk = pk)
-    category.delete()
-    return redirect("categories")
+    if request.method == "POST" :
+        category.delete()
+        return redirect("categories")
+    return render(request, "dashboard/delete_category.html")
+
+
+def posts(request):
+    posts = Blog.objects.all()
+    context = dict(posts = posts)
+    return render(request, "dashboard/posts.html", context)  
