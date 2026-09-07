@@ -7,13 +7,16 @@
     <!-- Right SideContent -->
     <div class="col-md-8">
         <h3>All Posts</h3>
+        <a href="{% url 'add_post' %}" class="btn btn-dark text-light float-end mb-2">Add New</a>
         <table class="table table-hover">
             <thead>
                 <tr>
                     <th >#</th>
-                    <th >Category Name</th>
-                    <th >Created At</th>
-                    <th >Updated At</th>
+                    <th >Title</th>
+                    <th >Category</th>
+                    <th >Author</th>
+                    <th >Status</th>
+                    <th >Featured</th>
                     <th >Action</th>
                 </tr>
             </thead>
@@ -22,8 +25,11 @@
                 <tr>
                     <th >{{ forloop.counter }}</th>
                     <td>{{ post }}</td>
-                    <td>{{ post.created_at }}</td>
-                    <td>{{ post.updated_at }}</td>
+                    <td>{{ post.category }}</td>
+                    <td>{{ post.author }}</td>
+                    <td>{{ post.status }}</td>
+                    <td>{{ post.is_featured }}</td>
+
                     <td>
                         <a href=""><i class='fa fa-edit text-success'></i></a>
                         &nbsp;

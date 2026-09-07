@@ -21,9 +21,11 @@
             </p>
 
             <p class="lead mb-0">
+                {% if post.slug %}
                 <a href="{% url 'blogs' post.slug %}" class="text-white fw-bold">
                     Continue reading...
                 </a>
+                {% endif %}
             </p>
         </div>
     </div>
@@ -41,18 +43,26 @@
             <div class="row g-0 border rounded overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
                 <div class="col p-4 d-flex flex-column position-static"> <strong
                         class="d-inline-block mb-2 text-success-emphasis">{{ post.category }}</strong>
+                    {% if post.slug %}
                     <h3 class="mb-0">
                         <a href="{% url 'blogs' post.slug %}" class="text-decoration-none link-body-emphasis">
                             {{ post.title }}
                         </a>
                     </h3>
+                    {% else %}
+                    <h3 class="mb-0">
+                        {{ post.title }}
+                    </h3> 
+                    {% endif %}
                     <div class="mb-1 text-body-secondary">{{post.created_at | timesince}} ago | {{post.author}}</div>
                     <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p>
                 </div>
+                {% if post.featured_image %}
                 <div class="col-auto d-none d-lg-block">
                     <img src="{{ post.featured_image.url }}" width="200" height="250" style="object-fit: cover;"
                         alt="{{ post.title }}">
                 </div>
+                {% endif %}
             </div>
         </div>
         {% endif %}
@@ -79,26 +89,25 @@
                     aria-disabled="true">Newer</a> </nav>
         </div>
 
- <aside class="col-md-4 blog-sidebar">
-        <div class="p-3 mb-3 bg-light rounded">
-          <h4 class="font-italic">{{ about.about_heading }}</h4>
-          <p class="mb-0">{{ about.about_description }}</p>
-        </div>
-
-        <div class="col-md-4">
-            {% if social_links %}
-            <div class="p-4">
-                <h4 class="fst-italic">FollowUs</h4>
-                <ol class="list-unstyled">
-                    
-                    {% for link in social_links %}
-                    <li><a href="{{link.link}}" target="_blank">{{link.platform}}</a></li>
-                    {% endfor %}
-            {% endif %}
-                </ol>
+        <aside class="col-md-4 blog-sidebar">
+            <div class="p-3 mb-3 bg-light rounded">
+                <h4 class="font-italic">{{ about.about_heading }}</h4>
+                <p class="mb-0">{{ about.about_description }}</p>
             </div>
-        </div>
-    </div>
+
+            <div class="col-md-4">
+                {% if social_links %}
+                <div class="p-4">
+                    <h4 class="fst-italic">FollowUs</h4>
+                    <ol class="list-unstyled">
+                        {% for link in social_links %}
+                        <li><a href="{{link.link}}" target="_blank">{{link.platform}}</a></li>
+                        {% endfor %}
+                        {% endif %}
+                    </ol>
+                </div>
+            </div>
+            cv
     </div>
 </main>
 

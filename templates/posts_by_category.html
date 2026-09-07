@@ -1,14 +1,7 @@
 {% extends 'base.html' %}
 {% block content %}
 
-<!-- {% for post in posts %}
-    <h2>{{post.title}}</h2>
-    <h6>{{post.updated_at | timesince}} ago | {{post.author}}</h5>
-    <img src="{{post.featured_image.url}}" alt="thumbnail" style="width: 500px;">
-    <h4>{{post.short_description | truncatechars:50}}</h3>
-    <h5>{{post.blog_body}}</h5>
-    <br><hr><br>
-{% endfor %} -->
+
 
     <main class="container">
 
@@ -26,20 +19,25 @@
                     <div class="col p-4 d-flex flex-column position-static">
                         <h3 class="mb-0">{{post.title}}</h3>
                         <div class="mb-1 text-body-secondary">{{post.created_at | timesince}} ago | {{post.author}}</div>
-                        <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p> <a href="{% url 'blogs' post.slug %}" class="icon-link gap-1 icon-link-hover stretched-link">
+                        <p class="mb-auto">{{post.short_description | truncatewords:20 }}</p> 
+                        {% if post.slug %}
+                        <a href="{% url 'blogs' post.slug %}" class="icon-link gap-1 icon-link-hover stretched-link">
                             Continue reading
                             <svg class="bi" aria-hidden="true">
                                 <use xlink:href="#chevron-right"></use>
                             </svg> </a>
+                        {% endif %}
                     </div>
                    <div class="col-auto d-none d-lg-block">
-            <img
+                {% if post.featured_image %}
+                    <img
                 src="{{ post.featured_image.url }}"
                 width="200"
                 height="250"
                 style="object-fit: cover;"
                 alt="{{ post.title }}"
             >
+            {% endif %}
         </div>
                 </div>
             </div>

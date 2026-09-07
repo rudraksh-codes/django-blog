@@ -32,6 +32,7 @@ class Blog(models.Model):
 
     slug = models.SlugField( 
         max_length=100,
+        unique=True
     )
 
     category = models.ForeignKey(
