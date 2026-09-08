@@ -69,10 +69,11 @@ def add_post(request):
     if request.method == "POST" : 
         form = PostForm(request.POST, request.FILES)
         if form.is_valid():
-            post = form.save(commit=False)
+            post = form.save(commit=False) #form object -> Blog.model.instance
             post.author = request.user
             post.save()
-            title = form.cleaned_data['title'] 
+            # title = form.cleaned_data['title']
+            title = post.title
             post.slug = slugify(title) + '-' + str(post.id) #None if post.!save()
             post.save() 
             return redirect("posts")
@@ -86,3 +87,29 @@ def add_post(request):
     }
     
     return render (request, "dashboard/add_post.html", context)
+
+
+def edit_post(request, pk):
+    post = get_object_or_404(Blog, pk=pk)
+    if request.method == "POST" : 
+        form = PostForm(request.POST, request.FILES,  instance=post)
+        if form.is_valid():
+            temp_post = form.save(commit=False)
+            temp_post.slug = slugify(temp_post.title) + '-' + str(post.pk) 
+            temp_post.save()
+            return redirect('posts')
+    form = PostForm(instance=post)
+    context = {
+        "form" : form, 
+        "post" : post
+    }
+    return render(request, "dashboard/edit_post.html", context)
+
+def delete_post(request, pk):
+    post = get_object_or_404(Blog, pk=pk)
+    if request.method == "POST" : 
+        post.delete()
+        return redirect('posts')
+    
+
+    return render(request, "dashboard/delete_post.html")
