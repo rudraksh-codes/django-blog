@@ -20,6 +20,7 @@ from . import views
 from blogs import views as BlogsViews
 from django.conf import settings
 from django.conf.urls.static import static
+from django.contrib.auth.decorators import login_required
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -31,7 +32,7 @@ urlpatterns = [
     path('register/', views.register, name = 'register'), 
     path('login/', views.login, name = "login"), 
     path('logout/', views.logout, name = "logout"),  
-    path('dashboard/', include('dashboards.urls'))
+    path('dashboard/', include('dashboards.urls')), 
 
 ] 
 
