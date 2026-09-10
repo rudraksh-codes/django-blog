@@ -1,9 +1,11 @@
 from django.shortcuts import render, redirect, get_object_or_404
+from django.http import JsonResponse
 from blogs.models import Category, Blog
 from django.contrib.auth.decorators import login_required
-from .forms import CategoryForm, PostForm   
+from .forms import CategoryForm, PostForm, AddUserForm
 from django.template.defaultfilters import slugify
 from django.contrib.auth.models import User
+
 
 # Create your views here.
 
@@ -119,3 +121,17 @@ def users(request):
     users = User.objects.all()
     context = dict(users=users)
     return render(request, "dashboard/users.html", context)
+
+def add_user(request):
+    if request.method == "POST" : 
+        form = AddUserForm(request.POST)
+        if form.is_valid():
+            form.save()
+            return redirect("users")
+        else : 
+            print(form.errors)
+    else : 
+        form = AddUserForm() #will show the preserved error
+    context = dict(form = form)
+    return render(request, "dashboard/add_user.html", context)
+
