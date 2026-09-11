@@ -19,3 +19,11 @@ class AddUserForm(UserCreationForm):
     class Meta : 
         model = User
         fields = ('email', 'username', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions', )
+
+
+
+class EditUserForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email', 'username', 'first_name', 'last_name', 'is_active', 'is_staff', 'is_superuser', 'groups', 'user_permissions')
+
