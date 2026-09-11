@@ -10,6 +10,7 @@
 
     <!-- Right SideContent -->
     <div class="col-md-8">
+        {% if perms.auth.delete_user %}
         <h3>ARE YOU SURE YOU WANT TO DELETE THIS USER ?</h3>
         <br>
         <form method="POST">
@@ -17,6 +18,9 @@
             <button type="submit" class="btn btn-danger">DELETE</button>
             <a href="{% url 'users' %}" class="btn btn-dark">Cancel</a>
         </form>
+        {% else %}
+        <h5 class="text-danger">You do not have the permission to view this page.</h5>
+        {% endif %}
     </div>
 </div>
 
